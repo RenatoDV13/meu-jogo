@@ -1,0 +1,72 @@
+/* Reset básico para remover margens e preenchimentos padrão do navegador */
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Garante que não haja barras de rolagem */
+    background-color: #111; /* Cor de fundo escura */
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    height: 100vh; /* Garante que o body ocupe 100% da altura da viewport */
+    font-family: 'Arial', sans-serif; /* Define uma fonte padrão */
+    color: white; /* Cor do texto padrão */
+    touch-action: none; /* Previne ações de toque padrão do navegador (como scroll) */
+}
+
+/* Container do jogo para centralizar o canvas */
+#game-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Adiciona uma borda sutil ao redor do jogo para separá-lo do fundo */
+    border: 2px solid #333;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5); /* Brilho sutil */
+    /* Garante que o container se ajuste à proporção do canvas fixo */
+    max-width: 100vw;
+    max-height: 100vh;
+    overflow: hidden; /* Oculta qualquer coisa que transborde do container */
+}
+
+/* Estilização do canvas */
+#gameCanvas {
+    background-color: #000; /* Fundo do jogo sempre preto */
+    display: block; /* Remove espaços extras abaixo do canvas */
+    /*
+     * A largura e altura do canvas serão controladas pelo JavaScript
+     * usando FIXED_CANVAS_WIDTH e FIXED_CANVAS_HEIGHT.
+     * No CSS, usaremos max-width/height para responsividade,
+     * mantendo a proporção.
+     */
+    width: 100%; /* Ocupa 100% da largura disponível no game-container */
+    height: 100%; /* Ocupa 100% da altura disponível no game-container */
+    /*
+     * Object-fit 'contain' ou 'cover' pode ser útil se o canvas não for do tamanho exato.
+     * Neste caso, como o JS define o tamanho fixo, não é estritamente necessário.
+     * Se o canvas for menor que o container, pode haver uma borda.
+     */
+    image-rendering: optimizeSpeed; /* Melhora a renderização de pixels (para jogos retrô) */
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: optimize-contrast;
+    -ms-interpolation-mode: nearest-neighbor;
+}
+
+/* Esconde qualquer texto de seleção que possa aparecer em toques longos */
+* {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent; /* Remove o destaque de toque em mobile */
+}
+
+/* Opcional: Adicionar um efeito de vibração sutil para toques em botões */
+/* Isso exigiria JavaScript para adicionar/remover a classe .active-button */
+/*
+.active-button {
+    transform: scale(0.98);
+    transition: transform 0.05s ease-out;
+}
+*/
